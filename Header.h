@@ -55,7 +55,7 @@ void Chinese_Remainder_Theorem_Info() {
 	std::cout << "M = m_1 * ... * m_i * ... * m_n,\nM_i = M / m_i,\nN_i = M_i^{-1} mod m_i\n";
 	std::cout << "ATTENTION!\nBe careful, that /forall i, j = /overline{1, n}, i != j, should fulfilled gcd(m_i, m_j) = 1 - pairwise coprime numbers.\n";
 	std::cout << "In this code it doesn't check.\nUnhandled exceptions:\n1) If one of m_i = 0 - will be error (program will crash).\n";
-	std::cout << "2) If one of gcd(m_i, m_j) != 1, you will get x = 0 - wrong code answer because x doesn't exist\n";
+	std::cout << "2) If one of gcd(m_i, m_j) != 1, you will get x = 0 - wrong code answer because x doesn't exist.\n";
 }
 
 long long int Chinese_Remainder_Theorem(std::vector<long long int>& vector_of_remainders, std::vector<long long int>& vector_of_modulos) {

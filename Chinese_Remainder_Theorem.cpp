@@ -20,6 +20,6 @@ int main() {
 	}
 	std::cout << "System to solve:\n";
 	for (int i = 0; i < vector_of_remainders.size(); i++)
-		std::cout << "x = " << vector_of_remainders[i] << " mod " << vector_of_modulos[i] <<'\n';
+		std::cout << "x = " << vector_of_remainders[i] << " mod " << vector_of_modulos[i] << '\n';
 	std::cout << "x = " << Chinese_Remainder_Theorem(vector_of_remainders, vector_of_modulos);
 }
