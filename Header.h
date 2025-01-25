@@ -54,11 +54,29 @@ void Chinese_Remainder_Theorem_Info() {
 	std::cout << "x = (r_1 * M_1 * N_1 + ... + r_i * M_i * N_i + ... + r_n * M_n * N_n) mod M,\nWhere:\n";
 	std::cout << "M = m_1 * ... * m_i * ... * m_n,\nM_i = M / m_i,\nN_i = M_i^{-1} mod m_i\n";
 	std::cout << "ATTENTION!\nBe careful, that /forall i, j = /overline{1, n}, i != j, should fulfilled gcd(m_i, m_j) = 1 - pairwise coprime numbers.\n";
-	std::cout << "In this code it doesn't check.\nUnhandled exceptions:\n1) If one of m_i = 0 - will be error (program will crash).\n";
+	std::cout << "Exceptions:\n1) If one of m_i = 0, you will get x = 0 - wrong code answer because x doesn't exist.\n";
 	std::cout << "2) If one of gcd(m_i, m_j) != 1, you will get x = 0 - wrong code answer because x doesn't exist.\n";
 }
 
+long long int greatest_common_divisor(long long int a, long long int b) {
+	long long int temp;
+	while (b != 0) {
+		temp = a % b;
+		a = b;
+		b = temp;
+	}
+	return a;
+}
+
 long long int Chinese_Remainder_Theorem(std::vector<long long int>& vector_of_remainders, std::vector<long long int>& vector_of_modulos) {
+	for (long long int i = 0; i < vector_of_modulos.size(); i++) {
+		if (vector_of_modulos[i] == 0)
+			return 0; // In such way no solutions exist
+		for (long long int j = i + 1; j < vector_of_modulos.size(); j++) {
+			if (greatest_common_divisor(vector_of_modulos[i], vector_of_modulos[j]) != 1)
+				return 0; // In such way no solutions exist (all modulus pairwise aren't coprime) 
+		}
+	}
 	long long int production_of_modulos = 1;
 	for (auto modulo : vector_of_modulos)
 		production_of_modulos *= modulo;
